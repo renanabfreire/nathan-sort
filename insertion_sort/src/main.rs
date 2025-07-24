@@ -1,19 +1,17 @@
-fn insertion_sort(arr: &mut [fsize]) {
-    pivo = null;
-    let mut j;
+fn insertion_sort<T: std::cmp::PartialOrd>(arr: &mut [T]) {
+    for i in 1..arr.len() {
 
-    for i in range(1..arr.len()) {
-        pivo = arr[i];
+        let mut j = i - 1;
 
-        j = i - 1;
-
-        while (j >= 0) && (A[j] > pivo) {
-            A[j + 1] = A[j];
+        while (j >= 0) && (arr[j] > pivo) {
+            arr[j + 1] = arr[j];
             j -= 1;
         }
 
-        A[j + 1] = pivo;
+        arr[j + 1] = pivo;
     }
 }
 
-fn main() {}
+fn main() {
+    
+}
