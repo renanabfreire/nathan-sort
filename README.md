@@ -8,5 +8,5 @@ The main objective of this repository is to improve my programming skills and ap
 - [x] Selection Sort
 - [x] Merge Sort
 - [x] Quick Sort
-- [ ] Counting Sort
+- [x] Counting Sort
 - [ ] Radix Sort
