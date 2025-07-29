@@ -6,7 +6,7 @@ The main objective of this repository is to improve my programming skills and ap
 
 - [x] Insertion Sort
 - [x] Selection Sort
-- [ ] Merge Sort
-- [ ] Quick Sort
+- [x] Merge Sort
+- [x] Quick Sort
 - [ ] Counting Sort
 - [ ] Radix Sort
