@@ -10,6 +10,7 @@ The main objective of this repository is to improve my programming skills and ap
 - [x] Quick Sort
 - [x] Counting Sort
 - [x] Radix Sort
+- [x] Heap Sort
 
 ### Stable Algortihms:
 
@@ -21,3 +22,4 @@ The following algorithms are stable. This means that if there are equal values i
 ❌ Quick Sort
 ✔️ Counting Sort
 ✔️ Radix Sort
+❌ Heap Sort
