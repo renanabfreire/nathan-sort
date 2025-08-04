@@ -11,6 +11,7 @@ The main objective of this repository is to improve my programming skills and ap
 - [x] Counting Sort
 - [x] Radix Sort
 - [x] Heap Sort
+- [x] Bubble Sort
 
 ### Stable Algortihms:
 
@@ -23,3 +24,4 @@ The following algorithms are stable. This means that if there are equal values i
 ✔️ Counting Sort
 ✔️ Radix Sort
 ❌ Heap Sort
+✔️ Bubble Sort
