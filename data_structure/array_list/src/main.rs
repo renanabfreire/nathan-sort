@@ -40,7 +40,7 @@ impl<T: Clone + Default> ArrayList<T> {
     where
         T: Clone,
     {
-        if self.is_full() || pos == 0 || pos > self.atual_size + 1 {
+        if pos == 0 || pos > self.atual_size + 1 {
             None
         } else {
             let deleted = self.list[pos - 1].clone();
@@ -85,5 +85,47 @@ impl<T: Clone + Default> ArrayList<T> {
 }
 
 fn main() {
-    println!("Hello, world!");
+    let mut exemplo = ArrayList::new(100);
+
+    if exemplo.is_empty() {
+        println!("It's empty");
+    } else {
+        println!("It isn't empty");
+    }
+
+    for i in 1..101 {
+        exemplo.insert(i, i);
+    }
+
+    if exemplo.is_full() {
+        println!("Is full");
+    } else {
+        println!("Not full");
+    }
+
+    println!("{}", exemplo.size());
+
+    if let Some(v) = exemplo.get(50) {
+        println!("{:#?}", v);
+    } else {
+        println!("None");
+    }
+
+    exemplo.change(101, 50);
+
+    if let Some(v) = exemplo.get(50) {
+        println!("{:#?}", v);
+    } else {
+        println!("None");
+    }
+
+    for _ in 0..100 {
+        exemplo.remove(1);
+    }
+
+    if exemplo.is_empty() {
+        println!("It's empty");
+    } else {
+        println!("It isn't empty");
+    }
 }
