@@ -4,13 +4,6 @@ struct Node<T: Clone> {
 }
 
 impl<T: Clone> Node<T> {
-    fn new(data: T) -> Self {
-        Self {
-            contend: data,
-            next: None,
-        }
-    }
-
     fn get(&self) -> T {
         self.contend.clone()
     }
@@ -151,6 +144,123 @@ impl<T: Clone> LinkedList<T> {
             self.insert_middle(pos, data)
         }
     }
+
+    fn remove_beg(&mut self) -> Option<T> {
+        if self.is_empty() {
+            return None;
+        } else {
+            let pivot = self.head.take()?;
+
+            self.head = pivot.next;
+
+            self.size -= 1;
+
+            Some(pivot.contend)
+        }
+    }
+
+    fn remove_pos(&mut self, pos: usize) -> Option<T> {
+        if pos < 1 || pos > self.size() {
+            None
+        } else {
+            let mut cur = self.head.as_mut()?;
+            let mut cont = 1;
+
+            while cont < pos - 1 {
+                cur = cur.next.as_mut()?;
+                cont += 1;
+            }
+
+            let mut removed = cur.next.take()?;
+
+            cur.next = removed.next.take();
+
+            self.size -= 1;
+
+            Some(removed.contend)
+        }
+    }
+
+    fn remove(&mut self, pos: usize) -> Option<T> {
+        if self.is_empty() || pos < 1 || pos > self.size() {
+            None
+        } else if pos == 1 {
+            self.remove_beg()
+        } else {
+            self.remove_pos(pos)
+        }
+    }
 }
 
-fn main() {}
+fn main() {
+    let mut lista = LinkedList::new();
+
+    println!(
+        "List {} empty",
+        if lista.is_empty() { "is" } else { "is not" }
+    );
+    println!("Size: {}", lista.size());
+
+    println!("\nInsert 10 at position 1 (begning)...");
+    if lista.insert(1, 10) {
+        println!("Insertion well done!");
+    } else {
+        println!("Fail to insert");
+    }
+
+    println!("Position 1: {:?}", lista.get(1));
+    println!("Element 10: {:?}", lista.get_pos(10));
+
+    println!("Size: {}", lista.size());
+
+    println!("\nInserting 30 at position 2...");
+    if lista.insert(2, 30) {
+        println!("Insertion well done");
+    } else {
+        println!("Failed on insertion");
+    }
+    println!("2nd positon element: {:?}", lista.get(2));
+    println!("30 is in position:   {:?}", lista.get_pos(30));
+    println!("Size: {}", lista.size());
+
+    println!("\nInserting 20 on the middle...");
+    if lista.insert(2, 20) {
+        println!("insertion well done");
+    } else {
+        println!("Failed to insert");
+    }
+    println!("2nd positon element: {:?}", lista.get(2));
+    println!("20 is in position:   {:?}", lista.get_pos(20));
+    println!("Last positon element: {:?}", lista.get(lista.size()));
+    println!("Size: {}", lista.size());
+
+    println!("\nTrying to access unexistent position (5)...");
+    println!("{:?}\n", lista.get(5));
+
+    println!("\nRemoving first element");
+    let removed = lista.remove(1);
+    if let Some(element) = removed {
+        println!("Element removed: {}", element);
+    } else {
+        println!("Failed to remove");
+    }
+    println!("\nNew size: {}", lista.size());
+    println!("New first element: {:?}", lista.get(1));
+
+    println!("\nRemoving last element");
+    let removed = lista.remove(2);
+    if let Some(element) = removed {
+        println!("Element removed: {}", element);
+    } else {
+        println!("Failed to remove");
+    }
+    println!("\nNew size after removing: {}", lista.size());
+
+    println!("\nTrying to remove ivalid element (position 5)");
+    println!("{:?}", lista.remove(5));
+
+    println!("\nThe list at this point:");
+    for i in 1..=lista.size() {
+        println!("Position {i}: {:?}", lista.get(i));
+    }
+}
